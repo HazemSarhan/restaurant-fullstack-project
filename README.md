@@ -57,9 +57,7 @@ Built with:
 
 ## Pictures
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://i.imgur.com/9ikoEYK.jpeg">
-</picture>
+<img src="[https://i.imgur.com/9ikoEYK.jpeg](https://i.imgur.com/bpMssEt.jpeg)" alt="Image">
 
 ## Installation :
 
