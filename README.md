@@ -15,7 +15,8 @@
   <p align="center">
     Full-stack restaurant management website that combines both backend and frontend development seamlessly.
     <br />
-    <a href="http://localhost:5000/api-docs/"><strong>Explore the docs »</strong></a>
+    <a href="https://restaurant-fullstack-project.onrender.com/"><strong>Live Demo »</strong></a>
+    <h5>email: hazem@admin.com, password: secret</h5>
     <br />
     <br />
     <a href="https://documenter.getpostman.com/view/36229537/2sAYBd67ya">Postman Docs</a>
