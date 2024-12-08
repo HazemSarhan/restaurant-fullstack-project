@@ -1,0 +1,89 @@
+<nav class="navbar navbar-expand-lg bg-transparent">
+  <div class="container">
+    <a class="navbar-brand navbar-logo" href="/"><span>Rest</span>aurant</a>
+    <i class="fa-solid fa-utensils"></i>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-3">
+        <li class="nav-item align-items-center d-flex my-2">
+          <i class="fas fa-sun"></i>
+          <div class="ms-2 form-check form-switch">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              role="switch"
+              id="themingSwitcher"
+              data-bs-theme-value="auto"
+            />
+          </div>
+          <i class="fas fa-moon"></i>
+        </li>
+
+        <li class="nav-item">
+          <a
+            class="nav-link <%= currentPath === '/' ? 'active' : '' %>"
+            href="/"
+            >Home</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link <%= currentPath === '/categories' ? 'active' : '' %>"
+            href="/categories"
+            >Categories</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link <%= currentPath === '/menu' ? 'active' : '' %>"
+            href="/menu"
+            >Menu</a
+          >
+        </li>
+      </ul>
+
+      <div class="buttons ms-3 gap-3 d-flex">
+        <% if (user) { %>
+        <a href="/dashboard" class="btn main-btn">Dashboard</a>
+        <a href="/logout" class="btn second-btn">Logout</a>
+        <a href="/cart" class="btn btn-secondary">
+          <i class="fas fa-shopping-cart"></i>
+          <span id="cart-count" class="cart-count">0</span>
+          <!-- Cart count -->
+        </a>
+        <% } else { %>
+        <a href="/login" class="btn second-btn">Login</a>
+        <a href="/register" class="btn main-btn">Register</a>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<script>
+  // Function to update the cart count
+  const updateCartCount = async () => {
+    try {
+      const response = await fetch("/api/v1/orders/cart");
+      if (response.ok) {
+        const { count } = await response.json();
+        document.getElementById("cart-count").textContent = count;
+      }
+    } catch (error) {
+      console.error("Error updating cart count:", error);
+    }
+  };
+
+  // Initialize cart count on page load
+  document.addEventListener("DOMContentLoaded", updateCartCount);
+</script>

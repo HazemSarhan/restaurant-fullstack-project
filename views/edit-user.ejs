@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/head.ejs') %>
+  <link rel="stylesheet" href="/css/edit.css" />
+
+  <body>
+    <!-- Navbar -->
+    <%- include('./partials/dashboard-navbar.ejs') %>
+
+    <!-- Edit Page Content -->
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-md-8 offset-md-2">
+          <div class="card shadow-lg">
+            <div class="card-body">
+              <h3 class="card-title text-center fw-bold">Edit Customer</h3>
+              <form id="editForm" enctype="multipart/form-data">
+                <div class="form-group mb-3">
+                  <label for="name" class="form-label">Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="name"
+                    name="name"
+                    value="<%= customer.name %>"
+                    required
+                  />
+                </div>
+                <div class="form-group mb-3">
+                  <label for="email" class="form-label">Email</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    name="email"
+                    value="<%= customer.email %>"
+                    required
+                  />
+                </div>
+                <div class="form-group mb-3">
+                  <label for="role" class="form-label">Role</label>
+                  <select class="form-select" id="role" name="role" required>
+                    <option value="ADMIN" <%= customer.role === 'ADMIN' ? 'selected' : '' %>>Admin</option>
+                    <option value="USER" <%= customer.role === 'USER' ? 'selected' : '' %>>User</option>
+                    <option value="MODERATOR" <%= customer.role === 'MODERATOR' ? 'selected' : '' %>>Moderator</option>
+                  </select>
+                                </div>
+                <div class="form-group mb-3">
+                  <label for="profile_picture" class="form-label">Profile Picture</label>
+                  <input type="file" class="form-control" id="profile_picture" name="profile_picture" />
+                  <div class="mt-3">
+                    <img
+                      src="<%= customer.profile_picture || 'https://via.placeholder.com/150' %>"
+                      alt="Profile Picture"
+                      width="150"
+                      class="rounded-circle"
+                    />
+                  </div>
+                </div>
+                <div class="d-flex justify-content-end gap-2">
+                  <a href="/customers" class="btn btn-secondary">Cancel</a>
+                  <button type="button" id="submitEditForm" class="btn btn-primary">Save Changes</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+    <!-- Footer -->
+    <%- include('./partials/footer.ejs') %>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const editForm = document.getElementById("editForm");
+        const submitEditForm = document.getElementById("submitEditForm");
+        const userId = "<%= customer.id %>"; // Pass the user ID dynamically
+    
+        submitEditForm.addEventListener("click", async () => {
+          const formData = new FormData(editForm);
+    
+          try {
+            const response = await fetch(`/api/v1/users/${userId}`, {
+              method: "PATCH",
+              body: formData,
+            });
+    
+            if (response.ok) {
+              alert("User updated successfully!");
+              window.location.href = "/customers"; // Redirect back to customers page
+            } else {
+              const errorData = await response.json();
+              alert(`Error updating user: ${errorData.message}`);
+            }
+          } catch (err) {
+            console.error("Error updating user:", err);
+            alert("An error occurred while updating the user.");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

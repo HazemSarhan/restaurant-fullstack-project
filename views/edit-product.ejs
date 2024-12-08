@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/head.ejs') %>
+  <link rel="stylesheet" href="/css/edit-product.css" />
+
+  <body>
+    <!-- Navbar -->
+    <%- include('./partials/dashboard-navbar.ejs') %>
+
+    <!-- Edit Product Page -->
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-md-8 offset-md-2">
+          <div class="card shadow-lg">
+            <div class="card-body">
+              <h3 class="card-title text-center fw-bold">Edit Product</h3>
+              <form
+                id="editProductForm"
+                action="/api/v1/products/<%= product.id %>"
+                method="POST"
+                enctype="multipart/form-data"
+              >
+                <div class="form-group mb-3">
+                  <label for="name" class="form-label">Product Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="name"
+                    name="name"
+                    value="<%= product.name %>"
+                    required
+                  />
+                </div>
+                <div class="form-group mb-3">
+                  <label for="description" class="form-label">Description</label>
+                  <textarea
+                    class="form-control"
+                    id="description"
+                    name="description"
+                    rows="3"
+                    required
+                  ><%= product.description %></textarea>
+                </div>
+                <div class="form-group mb-3">
+                  <label for="price" class="form-label">Price ($)</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="price"
+                    name="price"
+                    value="<%= product.price %>"
+                    required
+                  />
+                </div>
+                <div class="form-group mb-3">
+                  <label for="hot" class="form-label">Hot Product</label>
+                  <select
+                    class="form-select"
+                    id="hot"
+                    name="hot"
+                    required
+                  >
+                    <option value="true" <%= product.hot ? 'selected' : '' %>>True</option>
+                    <option value="false" <%= !product.hot ? 'selected' : '' %>>False</option>
+                  </select>
+                </div>
+                <div class="form-group mb-3">
+                  <label for="image" class="form-label">Product Image</label>
+                  <input
+                    type="file"
+                    class="form-control"
+                    id="image"
+                    name="image"
+                  />
+                  <div class="mt-3">
+                    <img
+                      src="<%= product.image || 'https://via.placeholder.com/150' %>"
+                      alt="Product Image"
+                      width="150"
+                      class="rounded"
+                    />
+                  </div>
+                </div>
+                <div class="d-flex justify-content-end gap-2">
+                  <a href="/products" class="btn btn-secondary">Cancel</a>
+                  <button type="submit" class="btn btn-primary">Save Changes</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <%- include('./partials/footer.ejs') %>
+
+    <!-- Script -->
+    <script>
+      document.getElementById("editProductForm").addEventListener("submit", async function (event) {
+        event.preventDefault();
+
+        const formData = new FormData(this);
+        const productId = "<%= product.id %>";
+        try {
+          const response = await fetch(`/api/v1/products/${productId}`, {
+            method: "PATCH",
+            body: formData,
+          });
+
+          if (response.ok) {
+            alert("Product updated successfully!");
+            window.location.href = "/products";
+          } else {
+            const errorData = await response.json();
+            alert(`Error: ${errorData.message || "Failed to update product"}`);
+          }
+        } catch (error) {
+          console.error("Error updating product:", error);
+          alert("An error occurred while updating the product.");
+        }
+      });
+    </script>
+  </body>
+</html>

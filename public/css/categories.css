@@ -1,0 +1,21 @@
+.category .special-heading + p {
+  margin: -40px 0 0;
+  font-size: 15px;
+  text-align: center;
+  color: #777;
+}
+
+.category img {
+  width: 150px;
+  height: 150px;
+  transition: transform 0.6s ease; /* Smooth transition */
+  transform-style: preserve-3d; /* Preserve 3D effect */
+}
+
+.category img:hover {
+  animation: flip-with-rotate 0.6s forwards; /* Apply the animation */
+}
+
+.category h5 {
+  color: var(--first-color);
+}

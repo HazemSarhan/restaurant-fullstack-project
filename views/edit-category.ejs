@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/head.ejs') %>
+  <link rel="stylesheet" href="/css/edit-category.css" />
+
+  <body>
+    <!-- Navbar -->
+    <%- include('./partials/dashboard-navbar.ejs') %>
+
+    <!-- Edit Category Form -->
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-md-8 offset-md-2">
+          <div class="card shadow-lg">
+            <div class="card-body">
+              <h3 class="card-title text-center fw-bold">Edit Category</h3>
+              <form
+                id="editCategoryForm"
+                action="/api/v1/category/<%= category.id %>"
+                method="POST"
+                enctype="multipart/form-data"
+              >
+                <input type="hidden" name="_method" value="PATCH" />
+                <div class="form-group mb-3">
+                  <label for="name" class="form-label">Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="name"
+                    name="name"
+                    value="<%= category.name %>"
+                    placeholder="Enter category name"
+                    required
+                  />
+                </div>
+                <div class="form-group mb-3">
+                  <label for="image" class="form-label">Image</label>
+                  <input
+                    type="file"
+                    class="form-control"
+                    id="image"
+                    name="image"
+                  />
+                  <div class="mt-3">
+                    <img
+                      src="<%= category.image || 'https://via.placeholder.com/150' %>"
+                      alt="Category Image"
+                      class="rounded-circle"
+                      width="150"
+                    />
+                  </div>
+                </div>
+                <div class="form-group mb-3">
+                  <label for="description" class="form-label"
+                    >Description</label
+                  >
+                  <textarea
+                    class="form-control"
+                    id="description"
+                    name="description"
+                    rows="4"
+                    placeholder="Enter category description"
+                    required
+                  >
+<%= category.description %></textarea
+                  >
+                </div>
+                <div class="d-flex justify-content-end gap-2">
+                  <a href="/category" class="btn btn-secondary">Cancel</a>
+                  <button type="submit" class="btn btn-primary">
+                    Save Changes
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <%- include('./partials/footer.ejs') %>
+  </body>
+</html>

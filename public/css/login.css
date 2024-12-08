@@ -1,0 +1,14 @@
+.login {
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    153deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(213, 41, 77, 1) 50%,
+    rgba(150, 27, 60, 1) 100%
+  );
+  height: calc(100vh - 56px);
+}
+
+a {
+  text-decoration: none;
+}

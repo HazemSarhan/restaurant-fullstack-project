@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/head.ejs') %>
+
+  <body>
+    <%- include('./partials/nav.ejs') %>
+
+    <div class="container mt-5">
+      <h2>Your Cart</h2>
+      <% if (cartItems && cartItems.length > 0) { %>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% cartItems.forEach((item) => { %>
+          <tr>
+            <td><%= item.product.name %></td>
+            <td>$<%= item.product.price %></td>
+            <td><%= item.quantity %></td>
+            <td>$<%= item.quantity * item.product.price %></td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+      <div class="d-flex justify-content-between mt-4">
+        <a href="/menu" class="btn btn-secondary">Continue Shopping</a>
+        <button id="checkout-btn" class="btn btn-primary">Checkout</button>
+      </div>
+      <% } else { %>
+      <p>Your cart is empty. <a href="/">Start shopping</a>.</p>
+      <% } %>
+    </div>
+
+    <%- include('./partials/footer.ejs') %>
+
+    <script>
+      document
+        .getElementById("checkout-btn")
+        .addEventListener("click", async () => {
+          try {
+            const response = await fetch("/api/v1/orders/stripe", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+            });
+
+            if (response.ok) {
+              const data = await response.json();
+              window.location.href = data.url; // Redirect to Stripe Checkout URL
+            } else {
+              const error = await response.json();
+              alert(error.msg || "Failed to proceed to payment.");
+            }
+          } catch (err) {
+            console.error("Error during checkout:", err);
+            alert("An error occurred. Please try again.");
+          }
+        });
+    </script>
+  </body>
+</html>

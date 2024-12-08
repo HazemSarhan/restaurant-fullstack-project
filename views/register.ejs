@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/head.ejs') %>
+  <link rel="stylesheet" href="/css/register.css" />
+
+  <body>
+    <!-- Navbar -->
+    <%- include('./partials/nav.ejs') %>
+
+    <!-- Body -->
+    <section class="register">
+      <div class="row">
+        <div class="col-md-6 offset-md-3">
+          <div class="card my-5 shadow-lg rounded-3 bg-transparent text-light">
+            <div class="card-body my-5">
+              <h1 class="text-center">Register</h1>
+              <form id="register-form" enctype="multipart/form-data">
+                <!-- Name -->
+                <div class="form-group my-3">
+                  <label for="name">Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="name"
+                    name="name"
+                    required
+                  />
+                </div>
+                <!-- Email -->
+                <div class="form-group my-3">
+                  <label for="email">Email</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    name="email"
+                    required
+                  />
+                </div>
+                <!-- Password -->
+                <div class="form-group my-3">
+                  <label for="password">Password</label>
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="password"
+                    name="password"
+                    required
+                  />
+                </div>
+                <!-- Profile Picture -->
+                <div class="form-group my-3">
+                  <label for="profile_picture">Profile Picture</label>
+                  <input
+                    type="file"
+                    class="form-control"
+                    id="profile_picture"
+                    name="profile_picture"
+                    accept="image/*"
+                  />
+                </div>
+                <div class="button mt-5 d-flex justify-content-center">
+                  <button type="submit" class="btn main-btn">Sign Up</button>
+                </div>
+              </form>
+              <div
+                class="toast-container position-fixed top-50 start-50 translate-middle p-3"
+              >
+                <div
+                  id="successToast"
+                  class="toast align-items-center text-bg-success border-0"
+                  role="alert"
+                  aria-live="assertive"
+                  aria-atomic="true"
+                >
+                  <div class="d-flex">
+                    <div class="toast-body">
+                      Registration successful! You can now log in.
+                    </div>
+                    <button
+                      type="button"
+                      class="btn-close btn-close-white me-2 m-auto"
+                      data-bs-dismiss="toast"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                </div>
+
+                <div
+                  id="errorToast"
+                  class="toast align-items-center text-bg-danger border-0"
+                  role="alert"
+                  aria-live="assertive"
+                  aria-atomic="true"
+                >
+                  <div class="d-flex">
+                    <div class="toast-body">
+                      Failed to register. Please check your details and try
+                      again.
+                    </div>
+                    <button
+                      type="button"
+                      class="btn-close btn-close-white me-2 m-auto"
+                      data-bs-dismiss="toast"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer & JS Files -->
+    <%- include('./partials/footer.ejs') %>
+    <script>
+      document
+        .getElementById("register-form")
+        .addEventListener("submit", async (event) => {
+          event.preventDefault(); // Prevent the default form submission
+
+          const form = document.getElementById("register-form");
+          const formData = new FormData(form);
+
+          try {
+            const response = await fetch("/api/v1/auth/register", {
+              method: "POST",
+              body: formData, // Automatically handles file uploads
+            });
+
+            if (response.ok) {
+              const data = await response.json();
+              console.log(data);
+              const successToast = new bootstrap.Toast(
+                document.getElementById("successToast")
+              );
+              successToast.show();
+
+              // Redirect to login after a delay
+              setTimeout(() => {
+                window.location.href = "/login";
+              }, 2000);
+            } else {
+              const errorToast = new bootstrap.Toast(
+                document.getElementById("errorToast")
+              );
+              errorToast.show();
+            }
+          } catch (error) {
+            console.error("Error during registration:", error);
+            const errorToast = new bootstrap.Toast(
+              document.getElementById("errorToast")
+            );
+            errorToast.show();
+          }
+        });
+    </script>
+  </body>
+</html>

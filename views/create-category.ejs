@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/head.ejs') %>
+  <link rel="stylesheet" href="/css/create-category.css" />
+
+  <body>
+    <!-- Navbar -->
+    <%- include('./partials/dashboard-navbar.ejs') %>
+
+    <!-- Create Category Form -->
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-md-8 offset-md-2">
+          <div class="card shadow-lg">
+            <div class="card-body">
+              <h3 class="card-title text-center fw-bold">Create Category</h3>
+              <form
+                id="createCategoryForm"
+                action="/api/v1/categories"
+                method="POST"
+                enctype="multipart/form-data"
+              >
+                <div class="form-group mb-3">
+                  <label for="name" class="form-label">Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="name"
+                    name="name"
+                    placeholder="Enter category name"
+                    required
+                  />
+                </div>
+                <div class="form-group mb-3">
+                  <label for="image" class="form-label">Image</label>
+                  <input
+                    type="file"
+                    class="form-control"
+                    id="image"
+                    name="image"
+                    required
+                  />
+                </div>
+                <div class="form-group mb-3">
+                  <label for="description" class="form-label"
+                    >Description</label
+                  >
+                  <textarea
+                    class="form-control"
+                    id="description"
+                    name="description"
+                    rows="4"
+                    placeholder="Enter category description"
+                    required
+                  ></textarea>
+                </div>
+                <div class="d-flex justify-content-end gap-2">
+                  <a href="/categories" class="btn btn-secondary">Cancel</a>
+                  <button type="submit" class="btn btn-primary">
+                    Create Category
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <%- include('./partials/footer.ejs') %>
+  </body>
+</html>

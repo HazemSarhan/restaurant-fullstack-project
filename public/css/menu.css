@@ -1,0 +1,31 @@
+.menu-section .special-heading + p {
+  margin: -40px 0 0;
+  font-size: 15px;
+  text-align: center;
+  color: #777;
+}
+
+.menu-section h5 {
+  color: var(--first-color);
+}
+
+.card-image2 {
+  position: relative;
+  overflow: hidden; /* Ensures the SVG stays within the container */
+  border-radius: 10px; /* Optional for rounded corners */
+}
+
+.card-image2 img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.card-image2 .wave-svg {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  z-index: 1;
+}
