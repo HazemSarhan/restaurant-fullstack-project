@@ -8,7 +8,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/HazemSarhan/restaurant-fullstack"></a>
+  <a href="https://github.com/HazemSarhan/restaurant-fullstack-project"></a>
 
 <h3 align="center">[Restaurant - FULLSTACK]</h3>
 
@@ -21,9 +21,9 @@
     <br />
     <a href="https://documenter.getpostman.com/view/36229537/2sAYBd67ya">Postman Docs</a>
     ·
-    <a href="https://github.com/HazemSarhan/restaurant-fullstack/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
+    <a href="https://github.com/HazemSarhan/restaurant-fullstack-project/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
     ·
-    <a href="https://github.com/HazemSarhan/restaurant-fullstack/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
+    <a href="https://github.com/HazemSarhan/restaurant-fullstack-project/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
   </p>
 </div>
 
@@ -65,13 +65,13 @@ Built with:
 1. Clone the repository:
 
 ```sh
-git clone https://github.com/HazemSarhan/restaurant-fullstack.git
+git clone https://github.com/HazemSarhan/restaurant-fullstack-project.git
 ```
 
 2. Navigate into the project directory:
 
 ```sh
-cd restaurant-fullstack
+cd restaurant-fullstack-project
 ```
 
 3. Install dependencies:
@@ -130,16 +130,16 @@ npm run dev
 > [!TIP]
 > First registered account role will automatically set to => ADMIN
 
-[contributors-shield]: https://img.shields.io/github/contributors/HazemSarhan/restaurant-fullstack?style=for-the-badge
-[contributors-url]: https://github.com/HazemSarhan/restaurant-fullstack/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/HazemSarhan/restaurant-fullstack.svg?style=for-the-badge
-[forks-url]: https://github.com/HazemSarhan/restaurant-fullstack/network/members
-[stars-shield]: https://img.shields.io/github/stars/HazemSarhan/restaurant-fullstack.svg?style=for-the-badge
-[stars-url]: https://github.com/HazemSarhan/restaurant-fullstack/stargazers
-[issues-shield]: https://img.shields.io/github/issues/HazemSarhan/restaurant-fullstack.svg?style=for-the-badge
-[issues-url]: https://github.com/HazemSarhan/restaurant-fullstack/issues
-[license-shield]: https://img.shields.io/github/license/HazemSarhan/restaurant-fullstack.svg?style=for-the-badge
-[license-url]: https://github.com/HazemSarhan/restaurant-fullstack/master/LICENSE.txt
+[contributors-shield]: https://img.shields.io/github/contributors/HazemSarhan/restaurant-fullstack-project?style=for-the-badge
+[contributors-url]: https://github.com/HazemSarhan/restaurant-fullstack-project/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/HazemSarhan/restaurant-fullstack-project.svg?style=for-the-badge
+[forks-url]: https://github.com/HazemSarhan/restaurant-fullstack-project/network/members
+[stars-shield]: https://img.shields.io/github/stars/HazemSarhan/restaurant-fullstack-project.svg?style=for-the-badge
+[stars-url]: https://github.com/HazemSarhan/restaurant-fullstack-project/stargazers
+[issues-shield]: https://img.shields.io/github/issues/HazemSarhan/restaurant-fullstack-project.svg?style=for-the-badge
+[issues-url]: https://github.com/HazemSarhan/restaurant-fullstack-project/issues
+[license-shield]: https://img.shields.io/github/license/HazemSarhan/restaurant-fullstack-project.svg?style=for-the-badge
+[license-url]: https://github.com/HazemSarhan/restaurant-fullstack-project/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/hazemmegahed/
 [product-screenshot]: images/screenshot.png
