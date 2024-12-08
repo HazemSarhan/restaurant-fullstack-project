@@ -57,7 +57,8 @@ Built with:
 
 ## Pictures
 
-<img src="[https://i.imgur.com/9ikoEYK.jpeg](https://i.imgur.com/bpMssEt.jpeg)" alt="Image">
+<img src="https://i.imgur.com/bpMssEt.jpeg" alt="Image">
+
 
 ## Installation :
 
